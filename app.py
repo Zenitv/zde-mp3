@@ -3,12 +3,9 @@ from youtube_dl import YoutubeDL
 
 import os
 
-for file in os.listdir():
-    print(file)
-    
 ydl_opts = {
     'format': 'bestaudio/best',
-    'outtmpl': '\download\%(id)s.%(ext)s',
+    'outtmpl': '%(id)s.%(ext)s',
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
@@ -31,7 +28,7 @@ def home():
 @app.route('/download/<path:url>/', methods=['GET'])
 def download(url):
     if request.method == 'GET':
-        return send_file(f'.\download\{url}')
+        return send_file(url)
 
 if __name__ == "__main__":
     app.run()

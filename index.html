@@ -1,0 +1,15 @@
+{% extends "base_template.html" %}
+
+{% block title  %}ZDE MP3 Conversor{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        <input type="text" name="link" id="link", placeholder="Inserte enlace de YouTube">
+        <input type="submit" value="Convertir", id="send-link", name="convert">
+    </form>
+
+    {% if get_url %}
+        <a href="/{{ get_url.id }}.mp3">Descargar MP3</a>
+    {% endif %}
+
+{% endblock %}
