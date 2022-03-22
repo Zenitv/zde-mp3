@@ -27,8 +27,7 @@ def home():
 
 @app.route('/download/<path:url>/', methods=['GET'])
 def download(url):
-    if request.method == 'GET':
-        return send_file(url)
+    return send_file(url)
 
 if __name__ == "__main__":
     app.run()
