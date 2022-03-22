@@ -25,7 +25,7 @@ def home():
 
     return render_template('index.html')
 
-@app.route('/download/<path:url>/', methods=['GET'])
+@app.route('/<path:url>/')
 def download(url):
     return send_file(url)
 
