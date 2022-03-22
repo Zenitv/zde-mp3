@@ -5,7 +5,7 @@ import os
 
 ydl_opts = {
     'format': 'bestaudio/best',
-    'outtmpl': '%(id)s.%(ext)s',
+    'outtmpl': '\tmp\%(id)s.%(ext)s',
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
@@ -25,9 +25,9 @@ def home():
 
     return render_template('index.html')
 
-@app.route('/<path:url>/')
+@app.route('/tmp/<path:url>/')
 def download(url):
-    return send_file(url)
+    return send_file(f'.\tmp\{url}')
 
 if __name__ == "__main__":
     app.run()
