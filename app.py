@@ -27,7 +27,7 @@ def home():
 
 @app.route('/tmp/<path:url>/')
 def download(url):
-    return send_file(f'/app/temp/{url}')
+    return send_file(f'/app/tmp/{url}')
 
 if __name__ == "__main__":
     app.run()
