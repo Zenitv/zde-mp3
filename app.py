@@ -3,7 +3,9 @@ from youtube_dl import YoutubeDL
 
 import os
 
-os.listdir()
+for file in os.listdir():
+    print(file)
+    
 ydl_opts = {
     'format': 'bestaudio/best',
     'outtmpl': '\download\%(id)s.%(ext)s',
