@@ -17,12 +17,12 @@ app = Flask(__name__)
 
 @app.route('/', methods=["GET", "POST"])
 def home():
+    for file in os.listdir():
+            print(file)
     if request.method == 'POST':
         url = request.form['link']
         yt = YoutubeDL(ydl_opts)
         get_url = yt.extract_info(url, download=True)
-        file in os.listdir():
-            print(file)
         return render_template('index.html', get_url=get_url)
 
     return render_template('index.html')
