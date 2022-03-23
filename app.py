@@ -29,6 +29,10 @@ def home():
 def download(url):
     if request.method == 'GET':
         return send_file(f"{os.getenv('DIR_TMP')}/{url}")
+    
+@app.errorhandler(500)
+def base(e):
+    return render_template('index.html'), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
