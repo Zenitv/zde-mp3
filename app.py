@@ -29,9 +29,13 @@ def home():
 def download(url):
     if request.method == 'GET':
         return send_file(f"{os.getenv('DIR_TMP')}/{url}")
+
+@app.errorhandler(404)
+def pagina_no_encontrada(error):
+    return render_template('index.html'), 404    
     
 @app.errorhandler(500)
-def base(e):
+def error_interno(error):
     return render_template('index.html'), 500
 
 if __name__ == "__main__":
