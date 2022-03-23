@@ -3,14 +3,12 @@
 {% block title  %}ZDE MP3 Conversor{% endblock %}
 
 {% block content %}
-    <form action="" method="post">
-        <input type="text" name="link" id="link", placeholder="Inserte enlace de YouTube">
-        <input type="submit" value="Convertir", id="send-link", name="convert">
+    <form action="" method="post", class="form-box">
+        <input type="text" name="url" id="url", placeholder="Inserte enlace de YouTube" autofocus>
+        <button type="submit">Convertir</button>
+        {% if data %}
+        <a id="link" href="tmp/{{ data.id }}.mp3">Obtener enlace</a>
+        {% endif %}
     </form>
-
-    {% if get_url %}
-        <a href="tmp/{{ get_url.id }}.mp3">Descargar MP3</a>
-    {% endif %}
-
 
 {% endblock %}
