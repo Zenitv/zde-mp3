@@ -21,13 +21,15 @@ def home():
         url = request.form['link']
         yt = YoutubeDL(ydl_opts)
         get_url = yt.extract_info(url, download=True)
+        file in os.listdir():
+            print(file)
         return render_template('index.html', get_url=get_url)
 
     return render_template('index.html')
 
 @app.route('/tmp/<path:url>/')
 def download(url):
-    return send_file(f'/tmp/{url}')
+    return send_file(f'tmp/{url}')
 
 if __name__ == "__main__":
     app.run()
