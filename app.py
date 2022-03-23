@@ -9,7 +9,7 @@ ydl_opts = {
     'postprocessors': [{
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'mp3',
-        'preferredquality': '320',
+        'preferredquality': '192',
     }],
 }
 
@@ -17,19 +17,18 @@ app = Flask(__name__)
 
 @app.route('/', methods=["GET", "POST"])
 def home():
-    for file in os.listdir():
-            print(file)
     if request.method == 'POST':
-        url = request.form['link']
+        url = request.form['url']
         yt = YoutubeDL(ydl_opts)
-        get_url = yt.extract_info(url, download=True)
-        return render_template('index.html', get_url=get_url)
+        data = yt.extract_info(url, download=True)
+        return render_template('index.html', data=data)
 
     return render_template('index.html')
 
-@app.route('/tmp/<path:url>/')
+@app.route('/tmp/<path:url>/', methods=['GET'])
 def download(url):
-    return send_file(f'tmp/{url}')
+    if request.method == 'GET':
+        return send_file(f"{os.getenv('DIR_TMP')}/{url}")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
